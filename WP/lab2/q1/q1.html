@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table and Image Animation</title>
+    <script src="/home/lab4/Desktop/220905128/lab2/jquery-3.7.1.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            left: 0;
+        }
+        table {
+            border-collapse: collapse;
+            margin-right: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+        tr:nth-child(odd) {
+            background-color: #faf170;
+        }
+        tr:nth-child(even) {
+            background-color: #d49cee;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #ff00f2;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a1b300;
+            box-shadow: 2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Table and Image Animation</h1>
+
+<div class="container" id="move-container">
+    <table>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+        <tr>
+            <td>Row 1</td>
+            <td>Data 1</td>
+            <td>Data 2</td>
+        </tr>
+        <tr>
+            <td>Row 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+        </tr>
+        <tr>
+            <td>Row 3</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+    </table>
+    <img src="/home/lab4/Desktop/220905128/lab2/q1/Pasted image.png" alt="Sample Image">
+</div>
+
+<button id="move-button">Move Table and Image</button>
+
+<script>
+    $(document).ready(function() {
+        $('#move-button').click(function() {
+            $('#move-container').animate({ left: "-=300px" }, 1000);
+        });
+    });
+</script>
+
+</body>
+</html>

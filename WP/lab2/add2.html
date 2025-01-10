@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding Text on Image</title>
+    <script src="/home/lab4/Desktop/220905128/lab2/jquery-3.7.1.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .image-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .sliding-text {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 24px;
+            padding: 10px 0;
+            box-sizing: border-box;
+            transition: all 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="image-container">
+    <img src="/home/lab4/Desktop/220905128/lab2/paris.png" alt="Sample Image">
+    <div class="sliding-text">Welcome to the Paris!</div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".image-container").hover(
+            function () {
+                $(".sliding-text").animate({ bottom: "0px" }, 500);
+            },
+            function () {
+                $(".sliding-text").animate({ bottom: "-50px" }, 500);
+            }
+        );
+    });
+</script>
+
+</body>
+</html>

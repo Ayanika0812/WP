@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <script src="/home/lab4/Desktop/220905128/lab2/jquery-3.7.1.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #cbf1f7;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #fff ;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 10px 12px 14px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+        .calculator input[type="text"] {
+            width: 100%;
+            height: 60px;
+            font-size: 36px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+        .calculator div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .calculator button {
+            width: 70px;
+            height: 70px;
+            font-size: 28px;
+            border: none;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .calculator button:hover {
+            background-color: #dcdcdc;
+            transform: scale(1.05);
+        }
+
+        .calculator button:active {
+            background-color: #c5c5c5;
+            transform: scale(1);
+        }
+        .calculator button.operator {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .calculator button.operator:hover {
+            background-color: #e67e22;
+        }
+        .calculator button.clear {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .calculator button.clear:hover {
+            background-color: #c0392b;
+        }
+        .calculator button.equals {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .calculator button.equals:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+
+    <input type="text" id="display" disabled>
+    <div>
+        <button class="clear" id="clear">C</button>
+        <button class="operator" id="divide">/</button>
+        <button class="operator" id="multiply">*</button>
+        <button class="operator" id="subtract">-</button>
+    </div>
+    <div>
+        <button id="7">7</button>
+        <button id="8">8</button>
+        <button id="9">9</button>
+        <button class="operator" id="add">+</button>
+    </div>
+    <div>
+        <button id="4">4</button>
+        <button id="5">5</button>
+        <button id="6">6</button>
+        <button class="equals" id="equals">=</button>
+    </div>
+    <div>
+        <button id="1">1</button>
+        <button id="2">2</button>
+        <button id="3">3</button>
+        <button id="0">0</button>
+    </div>
+    <div>
+        <button id="decimal">.</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        let currentInput = '';
+        let previousInput = '';
+        let operator = '';
+    
+        function updateDisplay(value) {
+            $('#display').val(value);
+        }
+        $('button').click(function() {
+            const buttonValue = $(this).text();
+            if (buttonValue === 'C') {
+                currentInput = '';
+                previousInput = '';
+                operator = '';
+                updateDisplay(currentInput);
+                return;
+            }
+            if (buttonValue === '=') {
+                if (previousInput && operator) {
+                    currentInput = calculate(previousInput, currentInput, operator);
+                    previousInput = '';
+                    operator = '';
+                    updateDisplay(currentInput);
+                }
+                return;
+            }
+            if (['+', '-', '*', '/'].includes(buttonValue)) {
+                if (previousInput === '') {
+                    previousInput = currentInput;
+                    currentInput = '';
+                    operator = buttonValue;
+                    return;
+                }
+
+                if (operator) {
+                    currentInput = calculate(previousInput, currentInput, operator);
+                    previousInput = currentInput;
+                    operator = buttonValue;
+                    currentInput = '';
+                }
+            }
+            if (buttonValue === '.' && currentInput.includes('.')) {
+                return; 
+            }
+
+            currentInput += buttonValue;
+            updateDisplay(currentInput);
+        });
+        function calculate(prev, curr, operator) {
+            prev = parseFloat(prev);
+            curr = parseFloat(curr);
+
+            if (operator === '+') return prev + curr;
+            if (operator === '-') return prev - curr;
+            if (operator === '*') return prev * curr;
+            if (operator === '/') return prev / curr;
+        }
+    });
+</script>
+
+</body>
+</html>

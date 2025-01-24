@@ -34,3 +34,4 @@ if result:
     print(f"The indices of the pair whose sum equals {target} are: {result[0]}, {result[1]}")
 else:
     print(f"No pair found whose sum equals {target}.")
+#The indices of the pair whose sum equals 50 are: 2, 3

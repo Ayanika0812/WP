@@ -1,0 +1,14 @@
+create new project
+
+
+blank Django Web project  (global py)
+project name ->create
+
+create virual environment (above yellow line )
+     ->name
+     below shows virual environment created
+     right side  requirements.txt -> indicates all downloaded
+
+
+     right click ->app->Django app ->name
+     

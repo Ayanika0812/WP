@@ -1,0 +1,41 @@
+
+
+for Student DATABASE
+
+1)Create a Model (models.py)
+Define a Student model to store student details.
+  -> class Student(models.Model):
+     name = models.CharField(max_length=100)
+
+2)then do 
+python manage.py makemigrations
+python manage.py migrate
+
+
+3)Create a Form (forms.py)
+  Use Django's forms.ModelForm to create a form for student registration.
+->  from django import forms
+    from .models import Student
+
+Update Views (views.py)
+Handle form rendering and submission.
+
+4)webapp/urls.py
+
+
+Update Templates (templates/webapp/student_form.html)
+Display the form in HTML.
+
+
+JQEURY & BOOTS
+
+webapp/static/css/bootstrap.min.css
+webapp/static/js/bootstrap.min.js
+webapp/static/js/jqueryfile
+
+2)Settings.py
+import os
+STATIC_URL ='/static/'
+STATICFILES_DIR = [ 
+   os.path.join(BASE_DIR, 'webapp/static'),
+]

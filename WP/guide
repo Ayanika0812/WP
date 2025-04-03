@@ -44,3 +44,28 @@ create webapp/templates/webapp/index.html
         'DIRS': [
             BASE_DIR / "templates",  # If you're using a global templates folder
         ],
+
+
+
+for Student DATABASE
+
+1)Create a Model (models.py)
+Define a Student model to store student details.
+  -> class Student(models.Model):
+     name = models.CharField(max_length=100)
+
+2)then do 
+python manage.py makemigrations
+python manage.py migrate
+
+
+3)Create a Form (forms.py)
+  Use Django's forms.ModelForm to create a form for student registration.
+->  from django import forms
+    from .models import Student
+
+Update Views (views.py)
+Handle form rendering and submission.
+
+Update Templates (templates/webapp/student_form.html)
+Display the form in HTML.

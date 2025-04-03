@@ -1,0 +1,46 @@
+django-admin startproject myproject
+cd project
+python3 manage.py startapp webapp
+python3 manage.py runserver
+
+
+create webapp/templates/webapp/index.html
+   -> Check the View Configuration
+    In your webapp/views.py, ensure the home view is rendering the correct template:
+
+    # webapp/views.py
+    from django.shortcuts import render
+
+    def home(request):
+        return render(request, 'webapp/index.html')  # Correct path to the template
+
+    ->Update the URL Configuration for the App
+    Make sure the webapp/urls.py is set up correctly to map the root URL (/) to the home view. If you haven’t created this file yet, create it as follows:
+
+    # webapp/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.home, name='home'),  # This should route to the home view
+    ]
+    ->Include App URLs in the Project's urls.py
+    In your myproject/urls.py, ensure that the URLs for webapp are included:
+
+    # myproject/urls.py
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('webapp.urls')),  # Include the webapp URLs here
+    ]
+    ->Ensure Template Directory is Set Correctly
+    In your myproject/settings.py, make sure the TEMPLATES setting is configured to look for templates in the webapp/templates/ directory:
+
+    TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / "templates",  # If you're using a global templates folder
+        ],

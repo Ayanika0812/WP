@@ -1,0 +1,9 @@
+python -m venv myenv
+cd myenv
+.\Scripts\activate
+py -m pip install Django==5.1.5
+django-admin startproject myproject
+cd myproject
+python manage.py startapp webapp 
+python manage.py runserver           
+ 
